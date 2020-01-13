@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chart</title>
+</head>
+<body>
+    
+
+    <canvas id="myBarChart" width="auto" height="auto"  ></canvas>
+    <canvas id="myScatterChart" width="auto" height="auto" ></canvas>
+    <canvas id="myLineChart" width="auto" height="auto"  ></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js">
+    </script>
+    <script src="/assets/ejs.min.js"></script>
+
+    <script>
+        var arra= '<%-JSON.stringify(data)%>';
+        
+        var dataObj=JSON.parse(arra)
+
+        var keys=Object.keys(dataObj)
+        console.log(keys)
+        
+
+        var values=[]
+        Y=0
+        for(var i=0;i<keys.length;i++){
+            values.push({x:Y,y:dataObj[keys[i]],r:0})
+            Y=(Y+1);
+        }
+        console.log(values)
+        var colors=[
+        'rgba(255, 99, 132, 1.0)',
+        'rgba(54, 162, 235, 1.0)',
+        'rgba(255, 206, 86, 1.0)',
+        'rgba(75, 192, 192, 1.0)',
+        'rgba(153, 102, 255, 1.0)',
+        'rgba(255, 159, 64, 1.0)'
+    ];
+
+    var i=0;
+    var j=colors.length-1;
+    while(j<values.length){
+        colors.push(colors[i])
+        i=i+1
+        j=j+1;
+
+    }
+
+    console.log(colors)
+
+        console.log("\n")
+
+        console.log(values)
+        var ctx = document.getElementById('myScatterChart');
+        
+        /*var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: keys,
+                datasets: [{
+                    label: 'All Contents',
+                    data: values,
+                    backgroundColor:colors,
+                    borderWidth:2,
+                    barThickness:4
+                    }]
+            },
+            
+        });*/
+
+        var myChart = new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Scatter Dataset',
+                    data: values,
+                    backgroundColor:colors,
+                    borderWidth:0.2
+                    
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        type: 'linear',
+                        position: 'top'
+                    }]
+                }
+            }
+        });
+
+       </script>
+
+       
+    <script>
+        var arra= '<%-JSON.stringify(data)%>';
+        
+        var dataObj=JSON.parse(arra)
+
+        var keys=Object.keys(dataObj)
+        console.log(keys)
+        
+
+        var values=[]
+        Y=0
+        for(var i=0;i<keys.length;i++){
+            values.push({x:Y,y:dataObj[keys[i]],r:0})
+            Y=(Y+1);
+        }
+        console.log(values)
+        var colors=[
+        'rgba(255, 99, 132, 1.0)',
+        'rgba(54, 162, 235, 1.0)',
+        'rgba(255, 206, 86, 1.0)',
+        'rgba(75, 192, 192, 1.0)',
+        'rgba(153, 102, 255, 1.0)',
+        'rgba(255, 159, 64, 1.0)'
+    ];
+
+    var i=0;
+    var j=colors.length-1;
+    while(j<values.length){
+        colors.push(colors[i])
+        i=i+1
+        j=j+1;
+
+    }
+
+    console.log(colors)
+
+        console.log("\n")
+
+        console.log(values)
+        var ctx = document.getElementById('myBarChart');
+        
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: keys,
+                datasets: [{
+                    label: 'All Contents',
+                    data: values,
+                    backgroundColor:colors,
+                    borderWidth:2,
+                    barThickness:4
+                    }]
+            },
+            
+        });
+
+       </script>
+
+       <script>
+        var arra= '<%-JSON.stringify(data)%>';
+        
+        var dataObj=JSON.parse(arra)
+
+        var keys=Object.keys(dataObj)
+        console.log(keys)
+        
+
+        var values=[]
+        Y=0
+        for(var i=0;i<keys.length;i++){
+            values.push({x:Y,y:dataObj[keys[i]],r:0})
+            Y=(Y+1);
+        }
+        console.log(values)
+        var colors=[
+        'rgba(255, 99, 132, 1.0)',
+        'rgba(54, 162, 235, 1.0)',
+        'rgba(255, 206, 86, 1.0)',
+        'rgba(75, 192, 192, 1.0)',
+        'rgba(153, 102, 255, 1.0)',
+        'rgba(255, 159, 64, 1.0)'
+    ];
+
+    var i=0;
+    var j=colors.length-1;
+    while(j<values.length){
+        colors.push(colors[i])
+        i=i+1
+        j=j+1;
+
+    }
+
+    console.log(colors)
+
+        console.log("\n")
+
+        console.log(values)
+        var ctx = document.getElementById('myLineChart');
+        
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: keys,
+                datasets: [{
+                    label: 'All Contents',
+                    data: values,
+                    backgroundColor:colors,
+                    borderWidth:0.1,
+                    
+                    }]
+            },
+            
+        });
+
+       </script>
+
+    </body>
+
+</html>
